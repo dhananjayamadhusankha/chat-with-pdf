@@ -1,19 +1,23 @@
+"use client";
+
 import { ThemeToggaler } from "@/components/ThemeToggaler";
 import { Button } from "@/components/ui/button";
 import { features } from "@/features";
+import { useUser } from "@clerk/nextjs";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const { user } = useUser();
   return (
     <main className="flex-1 overflow-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600 ">
       <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl dark:bg-gray-950 ">
-      <div className="relative">
-        <div className="-top-20 right-5 sm:-top-28 absolute">
-          <ThemeToggaler />
+        <div className="relative">
+          <div className="-top-20 right-5 sm:-top-28 absolute">
+            <ThemeToggaler />
+          </div>
         </div>
-      </div>
         <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
             <h2 className="text-base font-semibold leading-7 text-indigo-600">
@@ -38,12 +42,18 @@ export default function Home() {
             </p>
           </div>
 
-          <Button asChild className="mt-10" variant={"default"}>
-            <Link href={"/dashboard"}>
-              Get Started
-              <ArrowDown className="-rotate-90" />
-            </Link>
-          </Button>
+          {user ? (
+            <Button asChild className="mt-10" variant={"default"}>
+              <Link href={"/dashboard"}>
+                Get Started
+                <ArrowDown className="-rotate-90" />
+              </Link>
+            </Button>
+          ) : (
+            <Button asChild className="mt-10" variant={"default"}>
+              <Link href={"/sign-in"}>Sign in</Link>
+            </Button>
+          )}
         </div>
 
         <div className="relative overflow-hidden pt-16">
@@ -63,7 +73,7 @@ export default function Home() {
         <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
           <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
             {features.map((feature) => (
-              <div className="relative pl-9">
+              <div key={feature.name} className="relative pl-9">
                 <dt className="inline font-semibold text-gray-900">
                   <feature.icon
                     aria-hidden="true"
