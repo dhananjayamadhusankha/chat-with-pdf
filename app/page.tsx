@@ -7,12 +7,15 @@ import { useUser } from "@clerk/nextjs";
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import ChatImage from "@/images/VciRSTI.jpg"
 
 export default function Home() {
   const { user } = useUser();
   return (
     <main className="flex-1 overflow-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-indigo-600 ">
-      <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl dark:bg-gray-950 ">
+      <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl dark:bg-gray-950">
+      <div className="absolute top-0 left-0 bg-gradient-to-bl from-pink-400 to-indigo-500 dark:from-pink-600 dark:to-indigo-600 w-full h-96 blur-3xl filter opacity-50 -z-50 rounded-md"></div>
+
         <div className="relative">
           <div className="-top-20 right-5 sm:-top-28 absolute">
             <ThemeToggaler />
@@ -20,7 +23,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="text-base font-semibold leading-7 text-indigo-600">
+            <h2 className="text-base font-semibold leading-7 text-indigo-600 dark:text-indigo-400">
               Your Interactive Document Companion
             </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-white">
@@ -29,11 +32,11 @@ export default function Home() {
 
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-white">
               Introducing{" "}
-              <span className="font-bold text-indigo-600">Chat with PDF.</span>
+              <span className="font-bold text-indigo-600 dark:text-indigo-400">Chat with PDF.</span>
               <br />
               <br /> Upload your document, and our chatbot will answer
               questions, summarize content, and answer all your Qs. Ideal for
-              everyone, <span className=" text-indigo-600">
+              everyone, <span className=" text-indigo-600 dark:text-indigo-400">
                 Chat with PDF
               </span>{" "}
               turns static documents into{" "}
@@ -42,14 +45,8 @@ export default function Home() {
             </p>
           </div>
 
-          <Button asChild className="mt-10" variant={"default"}>
-              <Link href={"/dashboard"}>
-                Get Started
-                <ArrowDown className="-rotate-90" />
-              </Link>
-            </Button>
-
-          {/* {user ? (
+         
+          {user ? (
             <Button asChild className="mt-10" variant={"default"}>
               <Link href={"/dashboard"}>
                 Get Started
@@ -60,14 +57,14 @@ export default function Home() {
             <Button asChild className="mt-10" variant={"default"}>
               <Link href={"/sign-in"}>Sign in</Link>
             </Button>
-          )} */}
+          )}
         </div>
 
         <div className="relative overflow-hidden pt-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <Image
               alt="App dashboard"
-              src="https://i.imgur.com/VciRSTI.jpeg"
+              src={ChatImage}
               width={2432}
               height={1442}
               className="mb-[-0%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
