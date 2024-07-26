@@ -42,7 +42,14 @@ export default function Home() {
             </p>
           </div>
 
-          {user ? (
+          <Button asChild className="mt-10" variant={"default"}>
+              <Link href={"/dashboard"}>
+                Get Started
+                <ArrowDown className="-rotate-90" />
+              </Link>
+            </Button>
+
+          {/* {user ? (
             <Button asChild className="mt-10" variant={"default"}>
               <Link href={"/dashboard"}>
                 Get Started
@@ -53,7 +60,7 @@ export default function Home() {
             <Button asChild className="mt-10" variant={"default"}>
               <Link href={"/sign-in"}>Sign in</Link>
             </Button>
-          )}
+          )} */}
         </div>
 
         <div className="relative overflow-hidden pt-16">
